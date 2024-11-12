@@ -3,7 +3,7 @@ import ChatList from './ChatList'
 
 const Chat = () => {
 	return (
-		<div className="bg-black w-5/6 flex flex-col justify-center ">
+		<div className="w-5/6 grow max-sm:w-full flex flex-col border-2 border-b-0 overflow-scroll">
 			<ChatList />
 			<ChatForm />
 		</div>

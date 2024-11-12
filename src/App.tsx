@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar'
 function App() {
 
   return (
-    <div className="w-screen flex p-4 justify-between h-screen m-0 bg-white overflow-hidden">
+    <div className="w-screen bg-primary max-sm:flex-col-reverse flex justify-between h-screen m-0 overflow-hidden">
       <Chat />
       <Sidebar />
     </div >

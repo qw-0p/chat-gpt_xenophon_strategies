@@ -1,8 +1,6 @@
 import { IMessage } from './../models/IMessage'
 
 async function hof(messages: IMessage[], apiKey: string): Promise<IMessage[]> {
-	console.log('apiKey', apiKey)
-
 	if (apiKey) {
 		return await fetchFromOpenAi(messages, apiKey)
 	} else {

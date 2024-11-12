@@ -6,7 +6,7 @@ const Sidebar = () => {
 	const [value, setValue] = useState('')
 	const dispatch = useAppDispatch()
 	const { addApiKey } = appSlice.actions;
-	const { apiKey, status, error } = useAppSelector(state => state)
+	const { apiKey, status } = useAppSelector(state => state)
 
 	const saveApiKey = () => {
 		dispatch(addApiKey(value))
@@ -14,30 +14,29 @@ const Sidebar = () => {
 	}
 
 	const statusColors = {
-		'error': 'text-red-600',
-		'loading': 'text-yellow-600',
-		'ok': 'text-green-600'
+		'error': 'text-error',
+		'loading': 'text-loading',
+		'ok': 'text-ok'
 	}
 
 	return (
-		<div className='w-1/6 p-4 flex flex-col justify-between bg-purple-400'>
+		<div className='w-1/6 max-sm:w-full p-4 flex flex-col justify-between border-2 border-l-0 max-sm:border-2'>
 			<div>
-				<div className='flex justify-center mb-2'>
-					<input type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Enter API key...' className='w-full p-2' />
+				<div className='flex flex-col mb-2'>
+					<input type='text' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Enter API key...' className='w-full p-2 border-2' />
 					<button onClick={saveApiKey}>+</button>
 				</div>
 				<div>
 					{apiKey &&
 						<div className="flex justify-center">
-							<span className="bg-inherit text-red-600 hover:cursor-pointer uppercase" onClick={() => dispatch(appSlice.actions.removeApiKey())}>remove api key</span>
+							<span className="bg-inherit text-error hover:cursor-pointer uppercase" onClick={() => dispatch(appSlice.actions.removeApiKey())}>remove api key</span>
 						</div>
 					}
 				</div>
 			</div>
 
-			<div className="bg-black">
+			<div className="max-sm:hidden">
 				<p>Status: <span className={`${statusColors[status]} uppercase`}>{status}</span></p>
-				{error && <p>Error: {error}</p>}
 			</div>
 		</div>
 	)

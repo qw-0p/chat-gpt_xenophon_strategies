@@ -30,6 +30,7 @@ export const appSlice = createSlice({
 	initialState,
 	reducers: {
 		addMessage: (state, action: PayloadAction<IMessage>) => {
+			state.error = ''
 			state.messages.push(action.payload)
 		},
 		addApiKey(state, action) {
@@ -56,6 +57,7 @@ export const appSlice = createSlice({
 			)
 			.addCase(fetchMessages.rejected, (state, action) => {
 				state.status = 'error'
+
 				state.error = action.error.message
 			})
 	},
