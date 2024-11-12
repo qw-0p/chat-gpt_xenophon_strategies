@@ -1,11 +1,21 @@
-import React from 'react'
+import ChatMessage from './ChatMessage'
+import { useAppSelector } from '../utils/hooks'
 
-type Props = {}
 
-const ChatList = (props: Props) => {
+const ChatList = () => {
+	const messages = useAppSelector(state => state.messages)
+
 	return (
-		<div className='bg-gray-300 h-full grow flex flex-col'>
-			<p className='text-red-500'>Chat</p>
+		<div className='grow flex flex-col justify-end bg-yellow-400 overflow-y-auto'>
+			<div className='h-full p-4'>
+				{
+					messages.map((message, index) => {
+						return (
+							<ChatMessage key={index} content={message.content} role={message.role} />
+						)
+					})
+				}
+			</div>
 		</div>
 	)
 }
